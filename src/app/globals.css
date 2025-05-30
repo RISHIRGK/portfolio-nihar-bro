@@ -1,11 +1,40 @@
 @import "tailwindcss";
-
 :root {
   --background: #ffffff;
   --foreground: #171717;
+  --header-text:rgb(149, 149, 149);
+  --header-text-active:rgb(42, 42, 42);
+  --logo-text:rgb(42, 42, 42);
+}
+@font-face {
+  font-family: 'AvenirLTW01-Light';
+  font-style: normal;
+  font-weight: 300;
+  font-display: swap;
+  src: url('https://static.parastorage.com/fonts/v2/af36905f-3c92-4ef9-b0c1-f91432f16ac1/v1/avenir-lt-w01_35-light1475496.woff2') format('woff2');
+}
+@theme{
+   --breakpoint-xm: 500px;
+    --animate-fade-in: fade-in-scale 2.8s ease-in-out infinite;
+  --animate-up-enter: up-enter 1.4s ease-in;
+  @keyframes fade-in-scale {
+    0% {
+      opacity: 0;
+    }
+    50% {
+      opacity: 1;
+    }
+    100% {
+      opacity: 0;
+    }
+  }
+  @keyframes up-enter {
+    0% { clip-path: inset(100% 0 0 0); }
+    100% { clip-path: inset(0); }
+}
 }
 
-@theme inline {
+/* @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --font-sans: var(--font-geist-sans);
@@ -17,7 +46,7 @@
     --background: #0a0a0a;
     --foreground: #ededed;
   }
-}
+} */
 
 body {
   background: var(--background);

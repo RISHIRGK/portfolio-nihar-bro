@@ -1,103 +1,198 @@
-import Image from "next/image";
+'use client'
+import React, { useRef } from 'react'
+import Header from './components/Header'
+import Image from 'next/image'
+import { useInView, motion } from 'motion/react'
 
-export default function Home() {
+const page = () => {
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm/6 text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-[family-name:var(--font-geist-mono)] font-semibold">
-              src/app/page.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
+    <div className=" max-w-screen-2xl mx-auto bg-[#fbfbfb]  ">
+      <div className="flex flex-col ">
+        <Header />
+        <div className=" z-10 relative flex flex-col items-center justify-center min-h-fit py-20 max-h-[800px]">
+          <div className=" absolute right-[0%]   -rotate-90 sm:flex hidden  gap-2 items-center justify-center   "  style={{ fontFamily: 'AvenirLTW01-Light, sans-serif' }}>
+           <Image alt='logo' className=' size-8  rotate-90 ' src={'/show-projects.svg'} height={32} width={32} />
+            <span className='font-[400] text-sm '>View Project</span>
+          </div>
+<BackgroundVideo/>
+          {/* hero section */}
+          <div className="w-full h-full     flex items-center justify-center flex-col  gap-6 sm:gap-8 text-lg px-4 sm:text-xl *:text-center  ">
+            <div className="relative">
+              <h1 className=" z-10 text-4xl  whitespace-nowrap  line-clamp-1 sm:text-8xl font-[500]  mb-4 absolute top-[50%] left-[50%]  -translate-x-[50%] -translate-y-[50%]  animate-fade-in  sm:block hidden" style={{ fontFamily: 'Caudex, serif' }}>Nihar Kapadiya</h1>
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+              <div className="h-[432px] w-[301px]  rounded-t-full  overflow-hidden relative   ">
+
+                <Image alt='hero-image' className=' animate-up-enter object-bottom object-cover w-full h-full    ' src={'/hero-image.avif'} height={430} width={300} />
+              </div>
+            </div>
+
+            <h1 className=" z-10 text-4xl  whitespace-nowrap  line-clamp-1 sm:text-8xl font-[500]     animate-fade-in  block sm:hidden  " style={{ fontFamily: 'Caudex, serif' }}>Nihar Kapadiya</h1>
+            <DivOne />
+
+          </div>
+
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
+        <DivTwo />
+        <DivThree />
+<Footer/>
+
+      </div>
+    </div>
+  )
+}
+
+export default page
+
+const DivOne = () => {
+  const ref = useRef(null)
+  const isInView = useInView(ref, { once: true }) // Trigger only once
+
+  return (
+    <motion.div ref={ref}
+      initial={{ opacity: 0, y: 50 }}
+      animate={isInView ? { opacity: 1, y: 0 } : {}} transition={{ duration: .8, delay: 1.4 }} className=" flex flex-col  ">
+      <span className='first-letter:uppercase first-letter:text-3xl sm:first-letter:text-4xl' style={{ fontFamily: 'AvenirLTW01-Light, sans-serif' }}>Hey There! Welcome to my portfolio!</span>
+      <span className='  ' style={{ fontFamily: 'AvenirLTW01-Light, sans-serif' }}>
+        I’m a UI/UX designer with one and a half years of experience turning pixels into problem-
+      </span>
+      <span style={{ fontFamily: 'AvenirLTW01-Light, sans-serif' }}>solvers. I specialize in crafting designs that are as intuitive as they are easy on the eyes. </span>
+      <span style={{ fontFamily: 'AvenirLTW01-Light, sans-serif' }}>Ready to bring your ideas to life, without stress</span>
+      <span style={{ fontFamily: 'AvenirLTW01-Light, sans-serif' }}>(and with plenty of coffee)!</span>
+    </motion.div>
+  )
+}
+const DivTwo = () => {
+  return (
+    <div style={{ fontFamily: 'Caudex, serif' }} className=" bg-white   py-10 sm:py-20 w-full h-full flex  flex-col  items-center justify-center gap-10  px-4  ">
+      <div className=" flex items-center justify-center flex-col  *:sm:text-3xl *:text-lg  gap-3 *:text-[var(--logo-text)]   sm:text-xl *:text-center">
+
+     
+      <span>I’m a UI/UX Designer.</span><span>
+        UI design is my creative playground.</span><span>
+        UX design is where my discipline come in.</span><span>
+        Life? Well, that’s my testing ground.</span><span>
+        Welcome to the home of my design brain,</span><span>
+
+        where creativity meets strategy!</span> </div>
+        <button className="w-[180px] h-[42px] text-lg  font-light   bg-white border-[var(--logo-text)] hover:text-white hover:bg-black/85 transition-colors duration-350 ease-in border-[1px] " style={{ fontFamily: 'AvenirLTW01-Light, sans-serif' }}>About Me</button>
     </div>
   );
+}
+const DivThree = () => {
+  return (
+   <div  style={{ fontFamily: 'Caudex, serif' }} className=" px-6 sm:px-20 py-5   sm:py-24 flex flex-col items-center justify-center gap-4 ">
+    <h1 className='text-center text-3xl sm:text-[42px] font-[400] text-black/80  ' >My Projects</h1>
+     <div className=" sm:hidden  flex flex-col items-center justify-center text-center pb-4 text-lg text-black/80">
+      <span>Welcome to my portfolio. Here you’ll find a selection of my work.Explore my projects to learn more about what I do.</span>
+    </div>
+    <div className=" hidden sm:flex flex-col items-center justify-center text-center  text-xl text-black/80">
+      <span>Welcome to my portfolio. Here you’ll find a selection of my work.</span>
+      <span>Explore my projects to learn more about what I do.</span>
+    </div>
+< ProjectMainContainer />
+   </div>
+  );
+}
+const Footer = () => {
+  return (
+    <div  style={{ fontFamily: 'AvenirLTW01-Light, sans-serif' }}  className="w-full h-[58px] flex items-center justify-center bg-black/84 backdrop-blur-sm">
+      <div className="flex flex-col items-center justify-center gap-1  text-white text-sm font-light">
+        <span> Designed by Nihar Kapadiya,developed by RGK</span>
+        <span>All rights reserved © 2025</span>
+      </div>
+    </div>
+  )
+}
+const BackgroundVideo = () => {
+  return (
+    <div className="absolute  h-full w-full -z-10 ">
+      <video autoPlay muted loop playsInline className="w-full h-full object-cover opacity-38 ">
+        <source src="Home.mp4" type="video/mp4" />
+        Your browser does not support the video tag.
+      </video>
+    </div>
+  )
+}
+const ProjectContainer= ({img,header,desc}:{img:string,header:string,desc:string}) => {
+  return (
+    <div  style={{ fontFamily: 'Caudex, serif' }} className="flex flex-col items-center justify-center  gap-3">
+      <div className="overflow-hidden relative w-full h-[240px] sm:h-auto     ">
+        <Image alt='project-image' className='w-full h-full object-cover hover:scale-110  transition-transform duration-1100   ' src={img} height={400} width={600} />
+      </div>
+      {/* Map through your projects here */}
+      <div className=" text-center text-2xl font-[400] text-black/80">
+      {header}
+        {/* Project Card */}
+      </div>
+      <div style={{ fontFamily: 'AvenirLTW01-Light, sans-serif' }} className=" text-center text-sm  font-[400] text-black/80 ">
+         {desc}
+        {/* Project Card */}
+      </div>
+      <div className=" ">
+        {/* Project Card */}
+      </div>
+    </div>
+  );
+}
+const ProjectMainContainer = () => {
+  const projects = [
+  {
+    img: '/vr.avif',
+    header: 'ImmersiFit VR Interface',
+    desc: 'Vision OS - VR UI Design - Visual Design - Interaction Design',
+  },
+  {
+    img: '/poonam-cottage.avif',
+    header: 'ERP Poonam Coatings Case Study',
+    desc: 'SaaS Dashboard - Product Design - UX Research - UI/UX Design - Visual Design - Prototyping',
+  },
+  {
+    img: '/parallelax.avif',
+    header: 'Parallax UI Design',
+    desc: 'Parallax Design - Animation Design - User Interface Design - Visual Design',
+  },
+  {
+    img: '/taj.avif',
+    header: 'Taj Gandhinagar Resort and Spa',
+    desc: 'UX Case Study - Luxury Hotel Website - UI Design - Visual Design - Interaction Design - Wireframing - Prototyping - Responsive Web Design',
+  },
+  {
+    img: '/edit-inside.avif',
+    header: 'Edit Inside Case Study',
+    desc: 'User Experience Design - Responsive Design - UI Design - Visual Design',
+  },
+  {
+    img: '/balan.avif',
+    header: 'Balan Dosa',
+    desc: 'UI Design - Visual Design - Animated Design -Interaction Design',
+  },
+  {
+    img: '/midnight-pulse.avif',
+    header: 'Midnight Pulse',
+    desc: 'Dark Theme Landing Page - UI Design - Visual Design - Interaction Design',
+  },
+];
+
+return(
+   <div className=" sm:grid sm:grid-cols-12 sm:gap-24 sm:py-16  ">
+    <div className=" flex flex-col col-span-12 sm:hidden gap-8 ">
+      {projects.map((project, index) => (
+        <ProjectContainer key={index} {...project} />
+        
+      ))}
+    </div>
+  <div className=" hidden sm:flex sm:col-span-6  flex-col gap-32">
+    {projects.slice(0, 3).map((project, index) => (
+      <ProjectContainer key={index} {...project} />
+    ))}
+  </div>
+  <div className="col-span-6 hidden sm:flex flex-col gap-32">
+    {projects.slice(3).map((project, index) => (
+      <ProjectContainer key={index + 3} {...project} />
+    ))}
+  </div>
+</div>
+
+)
+
 }
