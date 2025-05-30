@@ -174,7 +174,7 @@ const ProjectMainContainer = () => {
 ];
 
 return(
-   <div className=" sm:grid sm:grid-cols-12 sm:gap-24 sm:py-16  ">
+   <div className=" sm:grid sm:grid-cols-12 gap-12 lg:gap-24 sm:py-16 box-border  ">
     <div className=" flex flex-col col-span-12 sm:hidden gap-8 ">
       {projects.map((project, index) => (
         <ProjectContainer key={index} {...project} />
