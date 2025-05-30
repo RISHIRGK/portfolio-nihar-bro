@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { Caudex, } from "next/font/google";
 import "./globals.css";
+import Header from "./components/Header";
+import Footer from "./components/Footer";
 
 const CaudexFont = Caudex({
   variable: "--font-geist-sans",
@@ -43,7 +45,15 @@ export default function RootLayout({
       <body
         className={`${CaudexFont.variable}   antialiased`}
       >
+            <div className=" max-w-screen-2xl mx-auto bg-[#fbfbfb]  ">
+      <div className="flex flex-col ">
+        <Header />
         {children}
+
+        <Footer/>
+
+      </div>
+    </div>
       </body>
     </html>
   );

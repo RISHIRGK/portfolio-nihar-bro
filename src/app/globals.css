@@ -17,6 +17,8 @@
    --breakpoint-xm: 500px;
     --animate-fade-in: fade-in-scale 2.8s ease-in-out infinite;
   --animate-up-enter: up-enter 1.4s ease-in;
+  --animate-view-in: view-in 1.4s ease-in-out forwards;
+
   @keyframes fade-in-scale {
     0% {
       opacity: 0;
@@ -32,6 +34,12 @@
     0% { clip-path: inset(100% 0 0 0); }
     100% { clip-path: inset(0); }
 }
+@keyframes view-in {
+    0% {opacity: 0;}
+    100% { opacity: 1; }
+}
+
+
 }
 
 /* @theme inline {

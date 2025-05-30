@@ -1,13 +1,21 @@
 'use client'
 import Image from 'next/image'
 import React, { useEffect, useRef, useState } from 'react'
-import useMinWidthMatch from '../hooks/useMinWidthMatch';
 import {AnimatePresence, motion }from "motion/react"
-// import { useSearchParams } from 'next/navigation';
+import { usePathname} from 'next/navigation';
+import Link from 'next/link';
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
-  // const params=useSearchParams()
-  // console.log(params,"params")
+    const pathname = usePathname()
+    const routes=[
+      {title:'Home',route:'/'},
+      {
+        title:'Work',childRoutes:[{}]
+      },{
+        title:'About me',route:'/about-me'
+      }
+    ]
+    
   const prevscrollY = useRef(0);
   useEffect(()=>{
  
@@ -40,9 +48,10 @@ const Header = () => {
 <span className='    text-[var(--logo-text)]    font-extralight    '   style={{fontFamily:'AvenirLTW01-Light',lineHeight:' 22.4px'}}>|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;UX Designer</span>
   </div>
   <div className=" hidden sm:flex items-center ml-auto  font-[18px] gap-10 " style={{fontFamily: 'kepler-std-semicondensed-dis, serif',fontWeight: '400', lineHeight:'16px'}}>
-    <span className="text-lg    text-[var(--header-text)]  ">Home</span>
-    <span className="text-lg      text-[var(--header-text)]">Work</span>
-    <span className="text-lg     text-[var(--header-text)]">About me</span>
+    {routes.map((data,index)=>{
+      return <Link key={index} href={data.route??''} className={`text-lg  ${pathname===data.route?'text-[var(--logo-text)] ':'text-[var(--header-text)]'}  `} >{data.title}</Link>
+    })}
+   
 
     </div>
 </div>

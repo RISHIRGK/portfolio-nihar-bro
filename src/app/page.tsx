@@ -1,22 +1,20 @@
 'use client'
-import React, { useEffect, useRef, useState } from 'react'
-import Header from './components/Header'
+import React, {  useRef, useState } from 'react'
 import Image from 'next/image'
 import { useInView, motion } from 'motion/react'
-import ProjectMainContainer from './ProjectMainContainer'
+import ProjectMainContainer from './components/ProjectMainContainer'
+import BackgroundVideo from './components/BackgroundVideo'
 
 const page = () => {
   const [startAnimation, setStartAnimation] = useState(false)
   return (
-    <div className=" max-w-screen-2xl mx-auto bg-[#fbfbfb]  ">
-      <div className="flex flex-col ">
-        <Header />
-        <div className=" z-10 relative flex flex-col items-center justify-center min-h-fit py-20 max-h-[800px]">
+  <div className='opacity-0 animate-view-in'>
+        <div className="    z-10 relative flex flex-col items-center justify-center min-h-fit py-20 max-h-[800px]">
           <div className=" absolute right-[0%]   -rotate-90 sm:flex hidden  gap-2 items-center justify-center   "  style={{ fontFamily: 'AvenirLTW01-Light, sans-serif' }}>
            <Image alt='logo' className=' size-8  rotate-90 ' src={'/show-projects.svg'} height={32} width={32} />
             <span className='font-[400] text-sm '>View Project</span>
           </div>
-<BackgroundVideo/>
+<BackgroundVideo src={"Home.mp4"}/>
           {/* hero section */}
           <div className="w-full h-full     flex items-center justify-center flex-col  gap-6 sm:gap-8 text-lg px-4 sm:text-xl *:text-center  ">
             <div className="relative">
@@ -36,10 +34,7 @@ const page = () => {
         </div>
         <DivTwo />
         <DivThree />
-<Footer/>
-
-      </div>
-    </div>
+</div>
   )
 }
 
@@ -95,27 +90,8 @@ const DivThree = () => {
    </div>
   );
 }
-const Footer = () => {
-  return (
-    <div  style={{ fontFamily: 'AvenirLTW01-Light, sans-serif' }}  className="w-full h-[58px] flex items-center justify-center bg-black/84 backdrop-blur-sm">
-      <div className="flex flex-col items-center justify-center gap-1  text-white text-sm font-light">
-        <span> Designed by Nihar Kapadiya,developed by RGK</span>
-        <span>All rights reserved © 2025</span>
-      </div>
-    </div>
-  )
-}
-const BackgroundVideo = () => {
-  return (
-    <div className="absolute  h-full w-full -z-10 ">
-      <video autoPlay muted loop playsInline className="w-full h-full object-cover opacity-38 ">
-        <source src="Home.mp4" type="video/mp4" />
-        Your browser does not support the video tag.
-      </video>
-    </div>
-  )
-}
- 
+
+
 
 
  
