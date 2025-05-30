@@ -3,8 +3,11 @@ import Image from 'next/image'
 import React, { useEffect, useRef, useState } from 'react'
 import useMinWidthMatch from '../hooks/useMinWidthMatch';
 import {AnimatePresence, motion }from "motion/react"
+import { useSearchParams } from 'next/navigation';
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const params=useSearchParams()
+  console.log(params,"params")
   const prevscrollY = useRef(0);
   useEffect(()=>{
  
