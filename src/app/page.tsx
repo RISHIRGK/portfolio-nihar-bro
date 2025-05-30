@@ -1,10 +1,12 @@
 'use client'
-import React, { useRef } from 'react'
+import React, { useRef, useState } from 'react'
 import Header from './components/Header'
 import Image from 'next/image'
 import { useInView, motion } from 'motion/react'
+import { tree } from 'next/dist/build/templates/app-page'
 
 const page = () => {
+  const [startAnimation, setStartAnimation] = useState(false)
   return (
     <div className=" max-w-screen-2xl mx-auto bg-[#fbfbfb]  ">
       <div className="flex flex-col ">
@@ -22,7 +24,7 @@ const page = () => {
 
               <div className="h-[432px] w-[301px]  rounded-t-full  overflow-hidden relative   ">
 
-                <Image alt='hero-image' className=' animate-up-enter object-bottom object-cover w-full h-full    ' src={'/hero-image.avif'} height={430} width={300} />
+                <Image alt='hero-image' className={` ${startAnimation?'animate-up-enter':'opacity-0'} object-bottom object-cover w-full h-full    `} onLoad={()=>{setStartAnimation(true)}} src={'/hero-image.avif'} height={430} width={300} />
               </div>
             </div>
 
