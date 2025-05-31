@@ -2,12 +2,18 @@ import { projectData } from '@/data/data';
 import { Metadata } from 'next';
 import React from 'react'
 
+type LayoutProps = {
+  children: React.ReactNode;
+};
+
+
 export async function generateMetadata({
   params,
 }: {
-  params: { project: string };
+  params:Promise<{ project: string }>;
 }): Promise<Metadata> {
-  const data = projectData[params.project];
+    const { project } = await params; // Await the params to get the project name
+  const data = projectData[project];
 
   if (!data) {
     return {
@@ -29,7 +35,7 @@ export async function generateMetadata({
         },
       ],
       type: 'website',
-      url: `${process.env.NEXT_PUBLIC_FRONTEND_URL}/works/${params.project}`,
+      url: `${process.env.NEXT_PUBLIC_FRONTEND_URL}/works/${project}`,
       siteName: 'Nihar Kapadiya Portfolio',
       locale: 'en_US',
     },
@@ -48,7 +54,7 @@ export async function generateMetadata({
       follow: true,
     },
     alternates: {
-      canonical: `${process.env.NEXT_PUBLIC_FRONTEND_URL}/works/${params.project}`,
+      canonical: `${process.env.NEXT_PUBLIC_FRONTEND_URL}/works/${project}`,
     },
     // verification: {
     //   google: 'google-site-verification-code',
@@ -70,11 +76,8 @@ export async function generateMetadata({
     category: 'Design',
   };
 }
-const layout = async  ({children}:{  children:React.ReactNode}) => {
-
-  return (
-    <div>{children}</div>
-  )
-}
+const layout = async ({ children}: LayoutProps) => {
+  return <>{children}</>;
+};
 
 export default layout
