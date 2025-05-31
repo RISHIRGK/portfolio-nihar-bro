@@ -39,7 +39,7 @@ export default function SmartImage({
         width={!fill ? width : undefined}
         height={!fill ? height : undefined}
         style={imageStyle}
-        onLoadingComplete={() => setIsLoaded(true)}
+        onLoad={() => setIsLoaded(true)}
         priority={priority}
         placeholder="blur"
         loading='eager'

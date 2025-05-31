@@ -144,7 +144,12 @@ const projectData: Record<string, PageData> = {
       dummySrc: '/waveflow-parallax-ui/waveflow-parallax-ui-dummy.jpg',
     },}
 }
-const page = ({params:{project}}:{params:{project:string}}) => {
+export default async function Page({
+  params,
+}: {
+  params: Promise<{ project: string }>
+}) {
+  const { project } = await params 
 const data= projectData[project] || projectData['balan-dosa'];
   const { header, heroImage, gridRightImage } = data;   
   return (
@@ -222,7 +227,6 @@ const data= projectData[project] || projectData['balan-dosa'];
   )
 }
 
-export default page
 
 const Title =({title}:{title:string})=>{
     return (
