@@ -1,6 +1,5 @@
 import React from 'react'
 import BackgroundVideo from '../components/BackgroundVideo'
-import Image from 'next/image'
 
 const page = () => {
   return (

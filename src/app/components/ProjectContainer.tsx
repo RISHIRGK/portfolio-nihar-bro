@@ -52,6 +52,7 @@ useEffect(() => {
             muted
             loop
             playsInline
+            preload="auto"
             onLoadedData={() => {
               console.log("video")
               setVideoLoaded(true);

@@ -15,6 +15,7 @@
   src: url('https://static.parastorage.com/fonts/v2/af36905f-3c92-4ef9-b0c1-f91432f16ac1/v1/avenir-lt-w01_35-light1475496.woff2') format('woff2');
 }
 @theme{
+   --shadow-normal: 0 1px 1px rgba(0, 0, 0, 0.05), 0 4px 6px rgba(34, 42, 53, 0.04), 0 24px 68px rgba(47, 48, 55, 0.05), 0 2px 3px rgba(0, 0, 0, 0.04);
    --breakpoint-xm: 500px;
     --animate-fade-in: fade-in-scale 2.8s ease-in-out infinite;
   --animate-up-enter: up-enter 1.4s ease-in;
@@ -39,7 +40,7 @@
     0% {opacity: 0;}
     100% { opacity: 1; }
 }
-
+   
 
 }
 

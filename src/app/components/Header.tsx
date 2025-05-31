@@ -7,11 +7,16 @@ import Link from 'next/link';
  const routes=[
       {title:'Home',route:'/'},
       {
-        title:'Works',childRoutes:[{
-          title:'Bala Dosa',route:'/'
-        },{
-          title:'Inside Out',route:'/'
-        },]
+        title:'Works',childRoutes: [
+          { route: '/works/immersi-fit', title: 'ImmersiFit VR Design' },
+          { route: '/works/taj', title: 'Taj Gandhinagar' },
+          { route: '/works/edit-inside', title: 'Edit Inside' },
+          { route: '/works/erp-poonam-coatings', title: 'ERP Poonam Coatings' },
+  {  route: '/works/balan-dosa', title: 'Balan Dosa' },
+  { route: '/works/waveflow-parallax-ui', title: 'Waveflow Parallax UI' },
+  { route: '/works/midnight-pulse', title: 'Midnight Pulse Landing Page' },
+
+]
       },{
         title:'About me',route:'/about-me'
       }
@@ -87,13 +92,13 @@ const CloseButton= () => {
     <AnimatePresence>
     {isOpen && <motion.div initial={{opacity:0}} animate={{opacity:1,  }} exit={{opacity:0}} onAnimationComplete={()=>{
       setShowInner(true)
-    }}  className='fixed z-30 inset-0  bg-white w-full h-full flex flex-col items-center justify-center ' >
+    }}  className='fixed z-30 inset-0  overflow-scroll bg-white w-full h-full flex flex-col items-center justify-center ' >
         <AnimatePresence    onExitComplete={() => {
           // Once inner exits, close outer
           setIsOpen(false)
         }} >
     {showInner &&
-   <motion.div  initial={{opacity:0,y:-50}} animate={{opacity:1,y:0}} exit={{opacity:0,y:-50}} transition={{duration:.3, type: "spring" }}     className="  px-14 *:text-center  flex flex-col items-center  mt-[120px] h-full w-full    ">
+   <motion.div  initial={{opacity:0,y:-50}} animate={{opacity:1,y:0}} exit={{opacity:0,y:-50}} transition={{duration:.3, type: "spring" }}     className="  px-8 *:text-center  flex flex-col items-center  mt-[120px] h-full w-full    ">
       {routes.map((data,index)=>{
         return <div  key={index} className={`  ${index!==(routes.length-1)&&' border-b-[2px] border-gray-200 '} w-full`}>  <div  className={`py-13 flex flex-col w-full `}>
           <div className="flex">
@@ -102,14 +107,14 @@ const CloseButton= () => {
 {data.title} 
         </Link>
             {data.childRoutes?.length &&  <div className=' flex-1/5 flex items-center justify-center' >
-            <Image alt='logo' className=' size-4    ' onClick={()=>{setOpenChildRoutes((prev)=>!prev)}} src={'/arrow.svg'} height={32} width={32} />
+            <Image alt='logo' className={` size-4 ${openChildRoutes&& 'rotate-180'} transition-transform duration-300    `}onClick={()=>{setOpenChildRoutes((prev)=>!prev)}} src={'/arrow.svg'} height={32} width={32} />
             </div>}
 
           </div>
           {/* <ChildRoutes/> */}
           </div>
           <AnimatePresence>
-          {(data.childRoutes?.length && openChildRoutes) && <ChildRoutes childRoutes={data.childRoutes} />}
+          {(data.childRoutes?.length && openChildRoutes) && <ChildRoutes onClose={()=>{ setOpenChildRoutes(false); setShowInner(false)}} childRoutes={data.childRoutes} />}
            </AnimatePresence>
           </div>
       })}
@@ -125,16 +130,18 @@ const CloseButton= () => {
     </>
   );
 }
-const ChildRoutes= ({childRoutes}:{childRoutes:{title:string,route:string}[]}) => {
+const ChildRoutes= ({onClose,childRoutes}:{onClose:()=>void,childRoutes:{title:string,route:string}[]}) => {
   const pathname = usePathname()
 
   return (
     
     <motion.div layout initial={{height:0,opacity:0}} animate={{height:'auto',opacity:1 }} exit={{height:0,opacity:0}} className="flex flex-col  w-full overflow-hidden">
       {childRoutes.map((data,index)=>{
-        return <div  key={index} className={` py-13 flex flex-col  w-full `}>
+        return <div  key={index} className={` py-10 flex flex-col  w-full `}>
             
-             <Link href={data.route??''} className={`text-[28px]  flex-1    ${false?'text-[var(--active-link-mobile)] ':'text-[var(--logo-text)]'}  `}  >
+             <Link  
+  style={{ fontFamily: 'AvenirLTW01-Light, sans-serif' }}
+              href={data.route??''} onClick={onClose} className={` w-full  text-[24px]  leading-6   font-light  sm:text-[28px]  flex-1      ${pathname===data.route?'text-[var(--active-link-mobile)] ':'text-[var(--logo-text)]'}  `}  >
 {data.title} 
         </Link>
         </div>
