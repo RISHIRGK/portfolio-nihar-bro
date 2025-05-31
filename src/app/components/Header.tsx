@@ -4,17 +4,22 @@ import React, { useEffect, useRef, useState } from 'react'
 import {AnimatePresence, motion }from "motion/react"
 import { usePathname} from 'next/navigation';
 import Link from 'next/link';
-const Header = () => {
-  const [isOpen, setIsOpen] = useState(false);
-    const pathname = usePathname()
-    const routes=[
+ const routes=[
       {title:'Home',route:'/'},
       {
-        title:'Work',childRoutes:[{}]
+        title:'Works',childRoutes:[{
+          title:'Bala Dosa',route:'/'
+        },{
+          title:'Inside Out',route:'/'
+        },]
       },{
         title:'About me',route:'/about-me'
       }
     ]
+const Header = () => {
+  const [isOpen, setIsOpen] = useState(false);
+    const pathname = usePathname()
+   
     
   const prevscrollY = useRef(0);
   useEffect(()=>{
@@ -63,16 +68,78 @@ export default Header
 
 const CloseButton= () => {
   const [isOpen, setIsOpen] = useState(false)
+  const [showInner, setShowInner] = useState(false)
+  const [openChildRoutes, setOpenChildRoutes] = useState(false)
+  const pathname = usePathname()
+  useEffect(() => {
+     if(isOpen)
+     {
+      document.body.style.overflow = 'hidden';
+      }
+      else
+      {
+        document.body.style.overflow = 'auto';
+      }
+  }, [isOpen])
+ 
   return (
     <>
     <AnimatePresence>
-    {isOpen && <motion.div initial={{opacity:0}} animate={{opacity:1,  }} exit={{opacity:0}} className='fixed z-30 inset-0  bg-white w-full h-full' ></motion.div>}
+    {isOpen && <motion.div initial={{opacity:0}} animate={{opacity:1,  }} exit={{opacity:0}} onAnimationComplete={()=>{
+      setShowInner(true)
+    }}  className='fixed z-30 inset-0  bg-white w-full h-full flex flex-col items-center justify-center ' >
+        <AnimatePresence    onExitComplete={() => {
+          // Once inner exits, close outer
+          setIsOpen(false)
+        }} >
+    {showInner &&
+   <motion.div  initial={{opacity:0,y:-50}} animate={{opacity:1,y:0}} exit={{opacity:0,y:-50}} transition={{duration:.3, type: "spring" }}     className="  px-14 *:text-center  flex flex-col items-center  mt-[120px] h-full w-full    ">
+      {routes.map((data,index)=>{
+        return <div  key={index} className={`  ${index!==(routes.length-1)&&' border-b-[2px] border-gray-200 '} w-full`}>  <div  className={`py-13 flex flex-col w-full `}>
+          <div className="flex">
+            {data.childRoutes?.length &&  <div className=' flex-1/5' ></div>}
+             <Link href={data.route??''} className={`text-[34px] ${data.childRoutes?.length?'flex-3/5':'flex-1'}    ${pathname===data.route?'text-[var(--active-link-mobile)] ':'text-[var(--logo-text)]'}  `} onClick={()=>{setShowInner(false)}} >
+{data.title} 
+        </Link>
+            {data.childRoutes?.length &&  <div className=' flex-1/5 flex items-center justify-center' >
+            <Image alt='logo' className=' size-4    ' onClick={()=>{setOpenChildRoutes((prev)=>!prev)}} src={'/arrow.svg'} height={32} width={32} />
+            </div>}
+
+          </div>
+          {/* <ChildRoutes/> */}
+          </div>
+          <AnimatePresence>
+          {(data.childRoutes?.length && openChildRoutes) && <ChildRoutes childRoutes={data.childRoutes} />}
+           </AnimatePresence>
+          </div>
+      })}
+      </motion.div>}
+            </AnimatePresence>
+      </motion.div>}
     </AnimatePresence>
-   <div onClick={()=>{setIsOpen((prev)=>!prev)}} className=" z-40 flex sm:hidden flex-col     gap-3 ">
+   <div onClick={()=>{ if(!isOpen){ setIsOpen((prev)=>!prev)} setShowInner(false) }} className=" z-40 flex sm:hidden flex-col     gap-3 ">
       <div className={`w-5 h-1 origin-top-left bg-black rounded-full transition-all duration-150    ${isOpen?"rotate-45   translate-x-[6px] translate-y-[5px]":""}  `} style={{ transitionTimingFunction:'cubic-bezier(0.9, -0.6, 0.3, 1.6)'}}></div>
       <div className={`w-8 h-1  origin-center bg-black rounded-full transition-all duration-150 ${isOpen?"-rotate-45":""}  `}  style={{ transitionTimingFunction:'cubic-bezier(0.9, -0.6, 0.3, 1.6)'}}></div>
       <div className={`w-5 h-1  origin-bottom-right bg-black rounded-full transition-all duration-150 ${isOpen?"rotate-45  translate-x-[7px] translate-y-[-4px]":""} `}  style={{ transitionTimingFunction:'cubic-bezier(0.9, -0.6, 0.3, 1.6)'}}></div>
     </div>
     </>
   );
+}
+const ChildRoutes= ({childRoutes}:{childRoutes:{title:string,route:string}[]}) => {
+  const pathname = usePathname()
+
+  return (
+    
+    <motion.div layout initial={{height:0,opacity:0}} animate={{height:'auto',opacity:1 }} exit={{height:0,opacity:0}} className="flex flex-col  w-full overflow-hidden">
+      {childRoutes.map((data,index)=>{
+        return <div  key={index} className={` py-13 flex flex-col  w-full `}>
+            
+             <Link href={data.route??''} className={`text-[28px]  flex-1    ${false?'text-[var(--active-link-mobile)] ':'text-[var(--logo-text)]'}  `}  >
+{data.title} 
+        </Link>
+        </div>
+      }
+      )}
+    </motion.div>
+  )
 }

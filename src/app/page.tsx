@@ -18,7 +18,7 @@ const page = () => {
           {/* hero section */}
           <div className="w-full h-full     flex items-center justify-center flex-col  gap-6 sm:gap-8 text-lg px-4 sm:text-xl *:text-center  ">
             <div className="relative">
-              <h1 className=" z-10 text-4xl  whitespace-nowrap  line-clamp-1 sm:text-8xl font-[500]  mb-4 absolute top-[50%] left-[50%]  -translate-x-[50%] -translate-y-[50%]  animate-fade-in  sm:block hidden" style={{ fontFamily: 'Caudex, serif' }}>Nihar Kapadiya</h1>
+              <h1 className=" z-10 text-4xl  whitespace-nowrap  line-clamp-1 sm:text-8xl font-[500]  mb-4 absolute top-[50%] left-[50%]  -translate-x-[50%] -translate-y-[50%]  animate-fade-in  sm:block hidden mix-blend-color-burn " style={{ fontFamily: 'Caudex, serif' }}>Nihar Kapadiya</h1>
 
               <div className="h-[432px] w-[301px]  rounded-t-full  overflow-hidden relative   ">
 

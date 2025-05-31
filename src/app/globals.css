@@ -5,6 +5,7 @@
   --header-text:rgb(149, 149, 149);
   --header-text-active:rgb(42, 42, 42);
   --logo-text:rgb(42, 42, 42);
+  --active-link-mobile:rgb(17, 103, 120);
 }
 @font-face {
   font-family: 'AvenirLTW01-Light';
