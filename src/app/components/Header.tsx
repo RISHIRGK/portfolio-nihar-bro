@@ -2,7 +2,7 @@
 import Image from 'next/image'
 import React, { useEffect, useRef, useState } from 'react'
 import {AnimatePresence, motion }from "motion/react"
-import { usePathname} from 'next/navigation';
+import { usePathname, useRouter} from 'next/navigation';
 import Link from 'next/link';
  const routes=[
       {title:'Home',route:'/'},
@@ -23,6 +23,8 @@ import Link from 'next/link';
     ]
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const [openChildRoutes, setOpenChildRoutes] = useState(false)
+const router=useRouter()
     const pathname = usePathname()
    
     
@@ -46,7 +48,9 @@ const Header = () => {
     };
   },[])
   return (
-<div className={` z-30 sticky ${isOpen?'sm:-top-25 top-0':'top-0'} transition-all duration-300  flex w-full h-[94px] border-b-2 bg-white opacity-100 px-[40px]  border-b-[var(--header-border)]  items-center justify-between`} style={{fontFamily: 'Caudex, serif', fontWeight: '400', lineHeight:'16px'}}>
+<div onMouseLeave={()=>{
+  setOpenChildRoutes(false)
+}} className={` z-30 sticky ${isOpen?'sm:-top-25 top-0':'top-0'}   transition-all duration-300  flex w-full h-[94px] border-b-2 bg-white opacity-100 px-[40px]  border-b-[var(--header-border)]  items-center justify-between`} style={{fontFamily: 'Caudex, serif', fontWeight: '400', lineHeight:'16px'}}>
   <div className="flex h-full items-center  max-sm:justify-between     max-sm:w-full    text-[var(--header-text)]  gap-6">
  <CloseButton/>
   <Image
@@ -54,12 +58,20 @@ const Header = () => {
     alt="Logo"
     width={100}
     height={50}
-    className="ml-4 mt-2 w-[68px] "/>
+    className="ml-4 mt-2 w-[68px] cursor-pointer " onClick={()=>{
+      router.push('/')
+    }} />
 <span className='    text-[var(--logo-text)]    font-extralight    '   style={{fontFamily:'AvenirLTW01-Light',lineHeight:' 22.4px'}}>|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;UX Designer</span>
   </div>
   <div className=" hidden sm:flex items-center ml-auto  font-[18px] gap-10 " style={{fontFamily: 'kepler-std-semicondensed-dis, serif',fontWeight: '400', lineHeight:'16px'}}>
     {routes.map((data,index)=>{
-      return <Link key={index} href={data.route??''} className={`text-lg  ${pathname===data.route?'text-[var(--logo-text)] ':'text-[var(--header-text)]'}  `} >{data.title}</Link>
+      return <div className='relative'  key={index} > <Link onMouseEnter={()=>{
+        if(data.childRoutes?.length) {
+          setOpenChildRoutes(true)
+        }
+      }} href={data.route??''} className={`text-lg  ${(pathname===data.route || pathname.startsWith("/"+data.title.toLowerCase()))?'text-[var(--logo-text)] ':'text-[var(--header-text)]'}  `} >{data.title}</Link>
+      { (data.title==='Works' && data.childRoutes) &&  <HeaderDropdown onClose={()=>{setOpenChildRoutes(false)}} routes={data.childRoutes} isOpen={openChildRoutes} />}
+      </div>
     })}
    
 
@@ -67,7 +79,31 @@ const Header = () => {
 </div>
   )
 }
-
+const HeaderDropdown = ({onClose,routes,isOpen}:{onClose:()=>void,routes:{route:string,title:string}[],isOpen:boolean}) => {
+  const pathname = usePathname()
+  return (
+    <AnimatePresence>
+      {isOpen && (
+        <motion.div
+          initial={{ opacity: 0, scale: .3 }}
+          animate={{ opacity: 1, scale: 1}}
+          exit={{ opacity: 0, scale: .3 }}
+          className="absolute  top-[200%]  overflow-hidden  left-1/2 min-w-[16rem] rounded-xl  border-[var(--logo-text)]  border-2  -translate-x-1/2 bg-white shadow-normal z-50"
+        >
+          <ul className=" ">
+            {routes.map((route, index) => (
+              <li key={index} aria-disabled={pathname===route.route} className={` py-2  px-4  ${pathname===route.route?'bg-black/80 text-white cursor-not-allowed ':'bg-white/30 '}  hover:text-white w-full text-black/80   font-light  hover:bg-black/80 text-center transition-colors duration-300 ease-in-out `}>
+                <Link href={route.route??''} onClick={onClose} aria-disabled={pathname===route.route} className="text-lg   text-center   w-full ">
+                  {route.title}
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </motion.div>
+      )}
+    </AnimatePresence>
+  );
+}
 export default Header
 
 
@@ -150,3 +186,4 @@ const ChildRoutes= ({onClose,childRoutes}:{onClose:()=>void,childRoutes:{title:s
     </motion.div>
   )
 }
+
