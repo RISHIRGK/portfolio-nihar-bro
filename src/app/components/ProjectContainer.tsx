@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 
 const ProjectContainer = ({
@@ -6,11 +7,13 @@ const ProjectContainer = ({
   header,
   desc,
   video,
+  route = '',
 }: {
   img: string;
   header: string;
   desc: string;
   video?: string;
+  route?: string;
 }) => {
   const [videoLoaded, setVideoLoaded] = useState(false);
   const [initialHover, setInitialHover] = useState(false);
@@ -38,7 +41,8 @@ useEffect(() => {
   };
 
   return (
-    <div
+    <Link
+    href={route}
       style={{ fontFamily: 'Caudex, serif' }}
       className="flex flex-col items-center justify-center gap-3"
       onMouseEnter={handleMouseEnter}
@@ -83,7 +87,7 @@ useEffect(() => {
       >
         {desc}
       </div>
-    </div>
+    </Link>
   );
 };
 

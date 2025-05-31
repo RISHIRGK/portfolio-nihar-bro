@@ -4,29 +4,34 @@ const ProjectMainContainer = () => {
   const projects = [
   {
     img: '/vr.avif',
+    route: '/works/immersi-fit',
     header: 'ImmersiFit VR Interface',
     desc: 'Vision OS - VR UI Design - Visual Design - Interaction Design',
     
   },
   {
     img: '/poonam-cottage.avif',
+    route: '/works/erp-poonam-coatings',
     header: 'ERP Poonam Coatings Case Study',
     desc: 'SaaS Dashboard - Product Design - UX Research - UI/UX Design - Visual Design - Prototyping',
     video:'poonam-cootage.mp4'
   },
   {
     img: '/parallelax.avif',
+    route: '/works/waveflow-parallax-ui',
     header: 'Parallax UI Design',
     desc: 'Parallax Design - Animation Design - User Interface Design - Visual Design',
   },
   {
     img: '/taj.avif',
+    route: '/works/taj',
     header: 'Taj Gandhinagar Resort and Spa',
     desc: 'UX Case Study - Luxury Hotel Website - UI Design - Visual Design - Interaction Design - Wireframing - Prototyping - Responsive Web Design',
     video:'taj.mp4'
   },
   {
     img: '/edit-inside.avif',
+    route: '/works/edit-inside',
     header: 'Edit Inside Case Study',
     desc: 'User Experience Design - Responsive Design - UI Design - Visual Design',
     video:"inside.mp4"
@@ -34,12 +39,14 @@ const ProjectMainContainer = () => {
   {
     img: '/balan.avif',
     header: 'Balan Dosa',
+    route: '/works/balan-dosa',
     desc: 'UI Design - Visual Design - Animated Design -Interaction Design',
     video:'balan.mp4'
   },
   {
     img: '/midnight-pulse.avif',
     header: 'Midnight Pulse',
+    route: '/works/midnight-pulse',
     desc: 'Dark Theme Landing Page - UI Design - Visual Design - Interaction Design',
   },
 ];

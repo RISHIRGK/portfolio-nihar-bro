@@ -1,0 +1,19 @@
+{
+    "name": "Nihar's Portfolio",
+    "short_name": "Portfolio",
+    "start_url": ".",
+    "display": "standalone",
+    "background_color": "#ffffff",
+    "theme_color": "#222222",
+    "description": "Personal portfolio website for Nihar.",
+    "icons": [
+        {
+            "src": "logo.png",
+            "type": "image/png"
+        },
+        {
+            "src": "logo.png",
+            "type": "image/png"
+        }
+    ]
+}
