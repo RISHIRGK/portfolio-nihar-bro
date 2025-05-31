@@ -35,7 +35,7 @@ export const metadata: Metadata = {
     description: "Nihar Kapadiya is a designer based in India, specializing in creating visually stunning and user-friendly digital experiences.",
     images: [
       {
-        url: "/hero-image.avif",
+        url: "/hero-image.jpg",
         alt: "Nihar Kapadiya Portfolio",
       },
     ],
@@ -48,7 +48,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Nihar Kapadiya | Designer",
     description: "Nihar Kapadiya is a designer based in India, specializing in creating visually stunning and user-friendly digital experiences.",
-    images: ["/hero-image.avif"],
+    images: ["/hero-image.jpg"],
   },
   keywords: "Nihar Kapadiya, UX Designer, Portfolio, Ahmedabad, India, UI Design, Visual Design, Interaction Design, User Experience, Web Design, Mobile App Design, Case Study, Design Process, Prototyping, Wireframing, Responsive Design, Design Thinking, User Research, Usability Testing, Creative Design, Digital Design, Frontend Development, Figma, Adobe XD, Sketch",
   metadataBase: new URL(process.env.NEXT_PUBLIC_FRONTEND_URL || "https://nihar-portfolio.vercel.app"),

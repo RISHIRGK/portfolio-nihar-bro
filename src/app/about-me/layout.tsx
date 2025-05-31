@@ -8,7 +8,7 @@ return {
         description: 'Learn more about Nihar Kapadiya, a passionate UX Designer based in Ahmedabad, India. Explore my journey, skills, and design philosophy.',
         images: [
         {
-            url: '/hero-image.avif ',  
+            url: '/hero-image.jpg ',  
             alt: 'About Me Hero Image',
         },
         ],

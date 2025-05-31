@@ -30,7 +30,7 @@ export async function generateMetadata({
       description: data.header.description,
       images: [
         {
-          url: data.heroImage.mainSrc,
+          url: '/hero-image.jpg',
           alt: data.header.title,
         },
       ],
@@ -43,7 +43,7 @@ export async function generateMetadata({
       card: 'summary_large_image',
       title: data.header.title,
       description: data.header.description,
-      images: [data.heroImage.mainSrc],
+      images: ['/hero-image.jpg'],
     },
  keywords:' Nihar Kapadiya, nihar kapadiya,UX Designer, Portfolio, ahmedabad, India, UI Design, Visual Design, Interaction Design, User Experience, Web Design, Mobile App Design, Case Study, Design Process, Prototyping, Wireframing, Responsive Design, Design Thinking, User Research, Usability Testing, Creative Design, Digital Design, Frontend Development, Figma, Adobe XD, Sketch, UI/UX Trends, Design Inspiration',
     metadataBase: new URL(process.env.NEXT_PUBLIC_FRONTEND_URL || 'https://nihar-portfolio.vercel.app'),
@@ -65,7 +65,7 @@ export async function generateMetadata({
       shortcut: '/logo.png',
       apple: '/logo.png',
     },
-    themeColor: '#ffffff',
+    // themeColor: '#ffffff',
     applicationName: 'Nihar Kapadiya Portfolio',
     formatDetection: {
       telephone: false,
