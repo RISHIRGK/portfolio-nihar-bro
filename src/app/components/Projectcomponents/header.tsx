@@ -1,4 +1,4 @@
-import { header } from "@/app/works/[project]/page";
+import { header } from "@/types/projectData";
 import { ReactElement, JSXElementConstructor, ReactNode, ReactPortal, Key } from "react";
 
 const Header= ({data}:{data:header}) => {
