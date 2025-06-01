@@ -2,6 +2,7 @@ import CustomVideo from '@/app/components/CustomVideo';
 import DetailsDiv from '@/app/components/DetailsDiv';
 import Header from '@/app/components/Projectcomponents/header';
 import SmartImage from '@/app/components/SmartImage';
+import TabledDetailsDiv from '@/app/components/TabledDetailsDiv';
 import Title from '@/app/components/Title';
 import { projectData } from '@/data/data';
 import React from 'react'
@@ -13,7 +14,7 @@ export default async function Page({
 }) {
   const { project } = await params 
 const data= projectData[project] || projectData['balan-dosa'];
-  const { header, heroImage, gridRightImage } = data;   
+  const { header, heroImage, gridRightImage,tabledDetails } = data;   
   return (
     <div className=" animate-view-in flex flex-col w-full mb-40 px-6 sm:px-12 py-5   sm:py-16 ">
         <Header data={header} />
@@ -28,6 +29,12 @@ const data= projectData[project] || projectData['balan-dosa'];
 
             priority={true}
         />
+{ data.tabledDetails && <div className="flex flex-col gap-4 mb-10 px-4 sm:px-22 bg-white  divide-y-1 divide-y-black/85"> 
+        {data.tabledDetails.map((item:any, index:number) => (
+    <TabledDetailsDiv key={index} title={item.title} subTextUrl={item?.subTextUrl} subTextUrlText={item?.subTextUrlText} subText={item.subText} descriptionData={item.descriptionData} supportImages={item.supportImages} />
+     
+        ))} 
+    </div>}
  {data.details && data.details.map((item:any, index:number) => (
         <DetailsDiv key={index} title={item.title} subTextUrl={item?.subTextUrl} subTextUrlText={item?.subTextUrlText} subText={item.subText} descriptionData={item.descriptionData} supportImages={item.supportImages} />
       ))}

@@ -24,6 +24,10 @@ export interface PageData{
     gridRightImage?: Images;
     myOpinion?: string; // Optional property for personal opinion
     videoSrc?: videoSrc; // Optional property for video source
+    tabledDetails?: {
+        title: string; 
+        descriptionData: any; 
+    }[];
     details?: {
         title: string;
         subText?: string;
