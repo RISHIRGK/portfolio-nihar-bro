@@ -1,4 +1,5 @@
 import { PageData } from "@/types/projectData";
+import { main } from "motion/react-client";
 
 export const projectData: Record<string, PageData> = {
   'balan-dosa': {
@@ -74,6 +75,108 @@ export const projectData: Record<string, PageData> = {
       mainSrc: '/taj/taj-main.avif',
       dummySrc: '/taj/taj-main-dummy.jpg',
     },
+      details: [
+    {
+     title:'Competitive Analysis',
+     descriptionData:{
+      'text':'To see how similar luxury and wellness websites present their services, exploring ways to enhance the Taj Gandhinagar site with a refined user experience. By studying top hospitality brands, we aim to elevate Taj’s online presence, focusing on usability, elegance, and the special wellness experience that sets Taj apart.',
+     },supportImages:[
+      {
+        mainSrc:'/taj/8b741d_2d20039193254030ab10d4bc3f56bd4f~mv2.avif',
+        dummySrc:'/taj/8b741d_2d20039193254030ab10d4bc3f56bd4f~mv2.png',
+        className:'w-full  ',
+        alt:'Competitive Analysis Image 1',
+      }
+     ]
+     
+  },{
+    title:'Wireframes',
+    descriptionData:{
+      'text':'In my wireframe for Taj Gandhinagar’s wellness and spa section, I focused on creating a smooth and inviting experience that reflects Taj’s luxury and warmth. I structured the layout to guide users effortlessly through the wellness offerings, with clear sections for treatments, spa details, and wellness packages. High-quality imagery is prioritized to capture the ambiance, while straightforward calls-to-action make booking easy. This design brings the serene, indulgent experience of Taj’s wellness services right to the forefront, allowing guests to feel connected before they even step inside.'},
+      supportImages:[
+      {
+        mainSrc:'/taj/8b741d_80548a4af0d24f0993be6fad3022bcaa~mv2.avif',
+        dummySrc:'/taj/8b741d_80548a4af0d24f0993be6fad3022bcaa~mv2.jpg',
+        className:'w-full  ',
+        alt:'Wireframe Image',
+      } 
+     ]
+  },
+  {
+    title:'User Flow',
+    subText:'Taj Gandhinagar website User flow',
+    descriptionData:{
+      text:'The user flow for Taj Gandhinagar’s wellness and spa website is designed to offer a seamless, intuitive experience. Visitors start at the homepage, where they can easily navigate to key sections like the "J Wellness Circle" page, which highlights spa and wellness offerings. The “Rooms and Suites” page allows users to explore accommodation options, while the “Packages for Spa and Wellness” page helps them discover tailored treatments. Other essential hotel pages are also accessible, ensuring users can smoothly explore all services and make bookings effortlessly.'
+  },
+   supportImages:[
+      {
+        mainSrc:'/taj/8b741d_ffb2f16b05864de58df0a79409f109fc~mv2.avif',
+        dummySrc:'/taj/8b741d_ffb2f16b05864de58df0a79409f109fc~mv2.png',
+        className:'w-full  ',
+        alt:'User Flow Image',
+      }]
+  },
+  {
+    title:'User Interview Findings',
+    subText:'Interview with guests',
+    descriptionData:{
+      'text':'The user interview findings for the Taj Gandhinagar wellness and spa website reveal key insights into how visitors interact with the wireframe, highlighting areas of strength and potential improvements for an enhanced user experience.',
+      "list":["Users found the overall navigation easy and intuitive, with clear sections for wellness, spa, and accommodations.",
+"The homepage successfully captured attention, with users appreciating its clean design and luxury feel.",
+"The 'J Wellness Circle' page effectively conveyed the wellness services, though some users suggested more visual emphasis on specific treatments.",
+"Users felt that the transition between room information and wellness options could be smoother to maintain engagement.",
+"The booking process was simple, but users requested more clarity in combining wellness packages with room bookings.",
+"Users felt the design effectively represented Taj Gandhinagar’s luxury and exclusivity, though some wanted a more emotional connection to the wellness offerings.",
+"High-quality images and an elegant layout were well-received, though some users wanted more personalized visuals related to wellness.",
+"The “Book Now” buttons were visible but could be made more prominent, especially on wellness-related pages.",
+"Users expressed interest in seeing customer reviews or stories to better connect with the brand’s wellness experience."],
+      'text2':'These findings provide valuable direction for refining the design, ensuring that it not only meets user expectations but also elevates the luxury experience that Taj is known for.',
+   
+    },
+       supportImages:[
+      {
+        mainSrc:'/taj/8b741d_0d1de9d0600d440996528335c6f9c81b~mv2.avif',
+        dummySrc:'/taj/8b741d_0d1de9d0600d440996528335c6f9c81b~mv2.png',
+        className:'w-full  ',
+        alt:'User Interview Findings Image',
+      }]
+
+  },
+  {title:'Typography',
+    subText:'We handcrafted each and every component of the system to make a full-featured design system to ensure scalability, flaxibility, and consistency of the platform.',
+    descriptionData:{
+      'text':'The typography for the Taj Gandhinagar website is carefully selected to reflect the luxury and elegance of the brand. The primary font, AvenirLTW01-Light, is used for body text, ensuring readability and a modern feel. For headings, Caudex is employed to add a touch of sophistication and tradition, aligning with the hotel’s heritage. This combination creates a harmonious balance between contemporary design and classic luxury, enhancing the overall user experience.'
+    },
+  },
+  {
+    title:'Color Pallets',
+    descriptionData:{
+  }}
+  ,
+  {
+    title:'High Fidelity Mockup',
+    subTextUrl:'/',
+    subTextUrlText:'View Design',
+    descriptionData:{
+      'text':'My high-fidelity designs focus on creating smooth, intuitive user experiences that feel natural and engaging. Each design pays attention to details like typography, color, and layout to ensure a cohesive look that aligns with the brand. Explore designs that prioritize functionality and keep users at the center.'
+    },
+     supportImages:[
+          {
+        mainSrc:'/taj/8b741d_fc7dd8829c1b44d7bb3e7300afcb1eda~mv2.avif',
+        dummySrc:'/taj/8b741d_ffb2f16b05864de58df0a79409f109fc~mv2.avif',
+        className:'w-full  ',
+        alt:'User Interview Findings Image',
+      },
+      {
+        mainSrc:'/taj/8b741d_30dd45e866c54b41b290c528ca3d9dcb~mv2.avif',
+        dummySrc:'/taj/8b741d_30dd45e866c54b41b290c528ca3d9dcb~mv2.jpg',
+        className:'w-full  ',
+        alt:'User Interview Findings Image',
+      }
+    ]
+  }
+
+]
   },
   "edit-inside":{
     header: {
@@ -121,5 +224,8 @@ export const projectData: Record<string, PageData> = {
     heroImage: {
       mainSrc: '/waveflow-parallax-ui/waveflow-parallax-ui.avif',
       dummySrc: '/waveflow-parallax-ui/waveflow-parallax-ui-dummy.jpg',
-    },}
-}
+    },
+  videoSrc:{src:'/waveflow-parallax-ui/Waveflow_Parallax_UI.mp4',mainSrc:'/waveflow-parallax-ui/8b741d_c3b83f2febd3421faf4c019dbb08bdbff000.avif',dummySrc:'/waveflow-parallax-ui/8b741d_c3b83f2febd3421faf4c019dbb08bdbff000.jpg'},
+  myOpinion:'My goal for this project was to develop my skills in parallax and animated UI design while gaining hands-on experience and a deeper understanding of creating dynamic, engaging interfaces.',
+
+}}

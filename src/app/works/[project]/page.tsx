@@ -1,5 +1,8 @@
+import CustomVideo from '@/app/components/CustomVideo';
+import DetailsDiv from '@/app/components/DetailsDiv';
 import Header from '@/app/components/Projectcomponents/header';
 import SmartImage from '@/app/components/SmartImage';
+import Title from '@/app/components/Title';
 import { projectData } from '@/data/data';
 import React from 'react'
  
@@ -25,6 +28,16 @@ const data= projectData[project] || projectData['balan-dosa'];
 
             priority={true}
         />
+ {data.details && data.details.map((item:any, index:number) => (
+        <DetailsDiv key={index} title={item.title} subTextUrl={item?.subTextUrl} subTextUrlText={item?.subTextUrlText} subText={item.subText} descriptionData={item.descriptionData} supportImages={item.supportImages} />
+      ))}
+   <div  style={{ fontFamily: 'Caudex, serif' }} className=" px-6 sm:px-20 py-5   sm:py-16 flex flex-col items-center justify-center gap-4 ">
+     <div className="   flex flex-col items-center justify-center text-center pb-4 text-[30px] sm:w-[88%] font-[400] text-black">
+      <span>{data.myOpinion}</span>
+    </div>
+ 
+   </div>
+        { data.videoSrc && <CustomVideo  src={data.videoSrc?.src} mainSrc={data?.videoSrc?.mainSrc} dummySrc={data.videoSrc?.dummySrc} />}
          <div className="  grid  sm:grid-cols-12 gap-12 lg:gap-24 sm:py-16 box-border h-fit  ">
  
   <div className="  sm:flex sm:col-span-6  flex-col gap-32">
@@ -86,12 +99,3 @@ const data= projectData[project] || projectData['balan-dosa'];
   )
 }
 
-
-const Title =({title}:{title:string})=>{
-    return (
-            <div className="flex flex-col gap-2  ">
-            <span className='text-3xl' style={{ fontFamily: 'Caudex, serif' }} >{title}</span>
-            <span className="w-10 h-[2px] bg-black"></span>
-        </div>
-    );
-    }
