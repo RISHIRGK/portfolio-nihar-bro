@@ -1,3 +1,4 @@
+import { useScroll,motion, useSpring, useTransform } from "motion/react";
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
@@ -17,6 +18,12 @@ const ProjectContainer = ({
 }) => {
   const [videoLoaded, setVideoLoaded] = useState(false);
   const [initialHover, setInitialHover] = useState(false);
+  const containerRef=useRef(null);
+  const {scrollYProgress }=useScroll({
+    target:containerRef, offset: ["start 105%","start 95%"],
+  })
+  const smoothProgress = useSpring(scrollYProgress, { damping: 20, stiffness: 100 });
+const translateY = useTransform(smoothProgress, [0, 1.1], [60, 0],{clamp:false}); // you can tweak these
   const videoRef = useRef<HTMLVideoElement>(null);
 useEffect(() => {
   console.log("videoLoaded changed:", videoLoaded);
@@ -41,15 +48,23 @@ useEffect(() => {
   };
 
   return (
+    
+    <motion.div 
+    ref={containerRef}
+    style={{y:translateY}}
+    transition={{duration:1.5,type:'spring'}}
+    >
     <Link
     href={route}
       style={{ fontFamily: 'Caudex, serif' }}
+      
       className="flex flex-col items-center justify-center gap-3"
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
       onMouseMove={handleMouseMove}
     >
-      <div className="overflow-hidden relative w-full h-[240px] sm:h-auto">
+      <motion.div  
+       className="overflow-hidden relative w-full h-[240px] sm:h-auto">
         {video && (
           <video
             ref={videoRef}
@@ -76,7 +91,7 @@ useEffect(() => {
           height={400}
           width={600}
         />
-      </div>
+      </motion.div>
 
       <div className="text-center text-2xl font-[400] text-black/80">
         {header}
@@ -88,6 +103,8 @@ useEffect(() => {
         {desc}
       </div>
     </Link>
+    
+</motion.div>
   );
 };
 
